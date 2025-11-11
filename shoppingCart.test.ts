@@ -42,4 +42,23 @@ describe('ShoppingCart', () => {
         expect(items.length).toBe(1);
         expect(items[0].id).toBe(itemB.id); // Only ProductB should remain
     });
+
+    it('should update the quantity of an existing item', () => {
+        cart.addItem(itemA, 5);
+        
+        cart.updateItemQuantity(itemA.id, 2);
+        
+        const items = cart.getItems();
+        expect(items[0].quantity).toBe(2);
+    });
+
+    it('should clear all items from the cart', () => {
+        cart.addItem(itemA);
+        cart.addItem(itemB);
+
+        expect(cart.getItems().length).toBe(2);
+
+        cart.clearCart();
+        expect(cart.getItems().length).toBe(0);
+    });
 });
