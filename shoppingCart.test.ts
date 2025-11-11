@@ -23,4 +23,23 @@ describe('ShoppingCart', () => {
         expect(items[0]).toEqual({...itemA, quantity: 1});
     });
 
+    it('should increment quantity when the same item is added to the cart', () => {
+        cart.addItem(itemA);
+        cart.addItem(itemA, 2);
+        const items = cart.getItems();
+
+        expect(items.length).toBe(1);
+        expect(items[0].quantity).toBe(3);
+    });
+
+    it('should remove an item by its ID', () => {
+        cart.addItem(itemA);
+        cart.addItem(itemB);
+        
+        cart.removeItem(itemB.id);
+
+        const items = cart.getItems();
+        expect(items.length).toBe(1);
+        expect(items[0].id).toBe(itemB.id); // Only ProductB should remain
+    });
 });

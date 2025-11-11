@@ -19,4 +19,8 @@ export class ShoppingCart {
             });
         }
     }
+
+    public removeItem(itemId: number): void {
+        this.items = this.items.filter(item => item.id === itemId)
+    }
 }
